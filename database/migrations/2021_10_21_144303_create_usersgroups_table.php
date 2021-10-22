@@ -15,8 +15,8 @@ class CreateUsersgroupsTable extends Migration
     {
         Schema::create('usersgroups', function (Blueprint $table) {
             $table->id();
-            $table->enum('name', ['superadmin', 'admin', 'coach', 'client']);
-            $table->string('role');
+            $table->string('name');
+            $table->enum('role', ['superadmin', 'admin', 'coach', 'client']);
             $table->timestamps();
         });
     }
