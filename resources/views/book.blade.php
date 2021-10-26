@@ -10,62 +10,50 @@
     </div>
 @stop
 @section('content')
+    
+
+    @if(!empty($errorMsg))
+    <div class="alert alert-warning"> {{ $errorMsg }}</div>
+    @endif
 
     @if(!empty($successMsg))
     <div class="alert alert-success"> {{ $successMsg }}</div>
     @endif
 
-    @if(!empty($errorMsg))
-    <div class="alert alert-error"> {{ $errorMsg }}</div>
-    @endif
-
+    
+    
     <form method="POST" action="/book">
         @csrf
         <div class="row">
-            <div class="col-md-8">
-                User
-            </div>
-            <div class="col-md-4">
-                <select name="user" id="user-select">
-                    <option value="">select any user</option>
-                    @foreach($users as $user)
+            <div class="mb-4">
+                <label for="user" class="form-label">User</label>
+                <select class="form-select" name="user" id="user-select"  aria-label="Default select">
+                @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
-                </select>
+                </select>           
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                Day
-            </div>
-            <div class="col-md-4">
-                <select name="date" id="date-select">
-                    {{$lessons}}
-                    <option value="">select a date</option>
-                    @foreach($dates as $date)
-                        <option value="{{ $date->date }}">{{ $date->date }}</option>
+            <div class="mb-4">
+                <label for="day" class="form-label">Day</label>
+                <select class="form-select" name="day" id="day-select"  aria-label="Default select">
+                    @foreach($days as $day)
+                        <option value="{{ $day->date }}">{{ $day->date }}</option>
                     @endforeach
-                </select>
+                </select>           
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                Lesson
-            </div>
-            <div class="col-md-4">
-                <select name="lesson" id="lesson-select">
-                    {{$lessons}}
-                    <option value="">select a lesson</option>
+            <div class="mb-4">
+                <label for="lesson" class="form-label">Lesson</label>
+                <select class="form-select" name="lesson" id="lesson-select"  aria-label="Default select">
                     @foreach($lessons as $lesson)
                         <option value="{{ $lesson->description }}">{{ $lesson->description }}</option>
                     @endforeach
-                </select>
+                </select>           
             </div>
-        </div>
-
-        <input type="submit" value="Book your class">
-        
-    </form>   
+        </div>        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+  
 
 @stop
 
