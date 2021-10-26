@@ -15,4 +15,10 @@ class Lesson extends Model
         'start_time',
         'end_time'
     ];
+
+    public function users(){
+
+        return $this->hasMany(User::class);
+    
+    }
 }
