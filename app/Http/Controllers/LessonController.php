@@ -14,13 +14,13 @@ class LessonController extends Controller
     public function showBookForm(){
 
         $users = User::all();        
-        $lessons =  DB::table('lessons')->select('description', 'capacity')->distinct()->get();
+        $lessons =  DB::table('lessons')->select('description')->distinct()->get();
         $days =  DB::table('lessons')->select('date')->distinct()->get();
 
         return view('book')
             ->with('users', $users)
             ->with('lessons', $lessons)
-            ->with('dates', $days);
+            ->with('days', $days);
 
     }
     
@@ -29,19 +29,16 @@ class LessonController extends Controller
         $data = [
             'users' => User::all(),
             'lessons' =>  DB::table('lessons')->select('description', 'capacity')->distinct()->get(),
-            'dates' =>  DB::table('lessons')->select('date')->distinct()->get(),
-        ];
-
-        
+            'days' =>  DB::table('lessons')->select('date')->distinct()->get(),
+        ];        
 
         $userId = $request->input('user');
         $lessonDesciption = $request->input('lesson');
-        $date = $request->input('date');
-        
+        $date = $request->input('day');
         
         $lesson = Lesson::where('description', $lessonDesciption)->where('date', $date)->first();
 
-        if ($lesson->capacity > 20){
+        if ($lesson->capacity < 0){
 
             $lessonUser = new LessonsUser();
             $lessonUser->user_id = $userId; 
