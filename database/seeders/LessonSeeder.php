@@ -23,60 +23,71 @@ class LessonSeeder extends Seeder
         $today = CarbonImmutable::today();
     
         for ($i=1; $i < 10 ; $i++) { 
-
+         
             $faker = \Faker\Factory::create();
             $coaches = DB::table('users')->inRandomOrder()->where('group_id',3)->limit(6)->get();
 
             $nextDay = $today->addDays( $i );            
             
             DB::table('lessons')->insert([
-                'name' => 'Morning Lesson',
-                'start' => $nextDay->addHours(6),
-                'end' => $nextDay->addHours(7),
-                'user_id' => $coaches[0]->id
+                'description' => 'Morning Lesson',
+                'coach' => $coaches[0]->id,
+                'date' => $nextDay,
+                'capacity' => 20,
+                'start_time' => $nextDay->addHours(7),
+                'end_time' => $nextDay->addHours(8)   
             ]);
 
-            
+                        
             $firstAfternoonLessonTime = $nextDay->addHours(4);
             DB::table('lessons')->insert([
-                'name' => 'MidDay Lesson',
-                'start' => $nextDay->addHours(12),
-                'end' => $nextDay->addHours(13),
-                'user_id' => $coaches[1]->id
+                'description' => 'MidDay Lesson',
+                'coach' => $coaches[1]->id,
+                'date' => $nextDay,
+                'capacity' => 20,
+                'start_time' => $nextDay->addHours(12),
+                'end_time' => $nextDay->addHours(13)   
             ]);
 
 
             $secondAfternoonLessonTime = $nextDay->addHours(1);
             DB::table('lessons')->insert([
-                'name' => 'Lesson 4 pm',
-                'start' => $nextDay->addHours(16),
-                'end' => $nextDay->addHours(17),
-                'user_id' => $coaches[2]->id
+                'description' => 'Lesson 4 pm',
+                'coach' => $coaches[2]->id,
+                'date' => $nextDay,
+                'capacity' => 20,
+                'start_time' => $nextDay->addHours(16),
+                'end_time' => $nextDay->addHours(17)
             ]);
             
             $thirdAfternoonLessonTime = $nextDay->addHours(1);
             DB::table('lessons')->insert([
-                'name' => 'Lesson 5 pm',
-                'start' => $nextDay->addHours(17),
-                'end' => $nextDay->addHours(18),
-                'user_id' => $coaches[3]->id
+                'description' => 'Lesson 5 pm',
+                'coach' => $coaches[3]->id,
+                'date' => $nextDay,
+                'capacity' => 20,
+                'start_time' => $nextDay->addHours(17),
+                'end_time' => $nextDay->addHours(18)
             ]);
             
             $lastLessonTime = $nextDay->addHours(1);
             DB::table('lessons')->insert([
-                'name' => 'Lesson 6 pm',
-                'start' => $nextDay->addHours(18),
-                'end' => $nextDay->addHours(19),
-                'user_id' => $coaches[4]->id
+                'description' => 'Lesson 6 pm',
+                'coach' => $coaches[4]->id,
+                'date' => $nextDay,
+                'capacity' => 20,
+                'start_time' => $nextDay->addHours(18),
+                'end_time' => $nextDay->addHours(19)
             ]);
              
             DB::table('lessons')->insert([
-                'name' => 'Lesson 7 pm',
-                'start' => $nextDay->addHours(19),
-                'end' => $nextDay->addHours(20),
-                'user_id' => $coaches[5]->id
+                'description' => 'Lesson 7 pm',
+                'coach' => $coaches[5]->id,
+                'date' => $nextDay,
+                'capacity' => 20,
+                'start_time' => $nextDay->addHours(19),
+                'end_time' => $nextDay->addHours(20)
             ]);
-
         }
     }
 }

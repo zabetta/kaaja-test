@@ -15,7 +15,7 @@ class AlterTableUserAddUsergroup extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->after('remember_token', function ($table){
-                $table->addColumn('integer','group_id');
+                $table->addColumn('integer','group_id')->default(0);
             });
         });
     }
