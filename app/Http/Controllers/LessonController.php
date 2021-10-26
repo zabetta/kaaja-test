@@ -6,20 +6,59 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Lesson;
+use App\Models\LessonsUser;
+use Illuminate\Support\Facades\DB;
 
 class LessonController extends Controller
 {
     public function showBookForm(){
 
-        $users = User::all();
-        $lessons = Lesson::all();
+        $users = User::all();        
+        $lessons =  DB::table('lessons')->select('description', 'capacity')->distinct()->get();
+        $days =  DB::table('lessons')->select('date')->distinct()->get();
 
-        return view('book')->with('users', $users)->with('lessons', $lessons);
-
+        return view('book')
+            ->with('users', $users)
+            ->with('lessons', $lessons)
+            ->with('dates', $days);
 
     }
     
     public function saveUserBooking(Request $request){
-        dd( $request );
+
+        $data = [
+            'users' => User::all(),
+            'lessons' =>  DB::table('lessons')->select('description', 'capacity')->distinct()->get(),
+            'dates' =>  DB::table('lessons')->select('date')->distinct()->get(),
+        ];
+
+        
+
+        $userId = $request->input('user');
+        $lessonDesciption = $request->input('lesson');
+        $date = $request->input('date');
+        
+        
+        $lesson = Lesson::where('description', $lessonDesciption)->where('date', $date)->first();
+
+        if ($lesson->capacity > 20){
+
+            $lessonUser = new LessonsUser();
+            $lessonUser->user_id = $userId; 
+            $lessonUser->lesson_id = $lesson->id; 
+            $lessonUser->save();
+
+            $lesson->capacity--;
+
+            if ($lesson->capacity == 0){
+                // email admin classe completa
+            }
+            $lesson->save();
+
+            return view('book', $data)->with('successMsg','Class Successfully created.');
+        }else{
+            return view('book', $data)->with('errorMsg','Class has no availabilty.');
+        }
+        
     }
 }
