@@ -19,3 +19,6 @@ Route::get('/', function () {return view('index'); })->name('home');
 
 Route::get('/book',  [LessonController::class, 'showBookForm'] )->name('user.book');
 Route::post('/book',  [LessonController::class, 'saveUserBooking'] )->name('user.book.save');
+
+Route::get('/book/list',  [LessonController::class, 'list'] )->name('user.book.list');
+Route::delete('/book/:id/delete',  [LessonController::class, 'delete'] )->name('book.delete');

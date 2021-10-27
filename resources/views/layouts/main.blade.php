@@ -20,6 +20,10 @@
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
+                color : #fff;
+            }
+            .table{
+                color : #fff;
             }
         </style>
     </head>
@@ -48,7 +52,19 @@
             @show            
             </div>
         </div>
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <!-- bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+        <script>
+            $(document).ready(function($){    
+                @section('script')
+                @show            
+            });
+            
+        </script>
     </body>
 </html>

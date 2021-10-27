@@ -8,10 +8,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4">
         <a href="{{ route( 'user.book' ) }}">
             <button style="border-radius: 5px; height: 30px;" >Prenota una classe</button>
         </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ route( 'user.book.list' ) }}">
+                <button style="border-radius: 5px; height: 30px;" >Visualizza prenotazioni</button>
+            </a>
         </div>
     </div>
 
