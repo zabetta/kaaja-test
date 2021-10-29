@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,10 @@ use App\Http\Controllers\LessonController;
 
 Route::get('/', function () {return view('index'); })->name('home');
 
-Route::get('/book',  [LessonController::class, 'showBookForm'] )->name('user.book');
+Route::get('/book',  [LessonController::class, 'showReservationForm'] )->name('user.book');
 Route::post('/book',  [LessonController::class, 'saveUserBooking'] )->name('user.book.save');
 
 Route::get('/book/list',  [LessonController::class, 'list'] )->name('user.book.list');
-Route::delete('/book/:id/delete',  [LessonController::class, 'delete'] )->name('book.delete');
+Route::delete('/book/:id/delete',  [LessonController::class, 'deleteReservation'] )->name('book.delete');
+
+Route::get('/user/list',  [UserController::class, 'list'] )->name('user.list');

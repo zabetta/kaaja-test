@@ -16,9 +16,9 @@ class Lesson extends Model
         'end_time'
     ];
 
-    public function users(){
+    public function coach(){
 
-        return $this->hasMany(User::class);
+        return $this->hasOne(User::class);
     
     }
 }

@@ -52,7 +52,9 @@
         </div>        
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    
+    <a href="{{ url('/') }}" >
+        <button type="back" class="btn btn-primary" style="margin-top: 0.5em;">BACK</button>
+    </a>
   
 
 @stop
